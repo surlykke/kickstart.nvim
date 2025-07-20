@@ -20,7 +20,7 @@ Goto_Definition = 'Goto_Definition'
 Goto_Declaration = 'Goto_Declaration'
 Goto_TypeDefinition = 'Goto_TypeDefinition'
 Goto_QuickfixList = 'Goto_QuickfixList'
-Goto_ParentDir = 'Goto_ParentDir'
+Launch_Oil = 'Launch_Oil'
 Action_Show = 'Action_Show'
 Action_Rename = 'Action_Rename'
 Action_HoverDoc = 'Action_HoverDoc'
@@ -53,8 +53,8 @@ local mappings = {
   { '<leader>gD', Goto_Declaration, 'Goto Declaration' },
   { '<leader>gt', Goto_TypeDefinition, 'Goto Type Definition' },
   { '<leader>gq', Goto_QuickfixList, 'Goto quickfix list' },
-  { '<leader>g-', Goto_ParentDir, 'Goto parent dir' },
   -- Actions
+  { '<leader>o', Launch_Oil, 'Launch Oil' },
   { '<leader>as', Action_Show, 'Show Code Actions' },
   { '<leader>ar', Action_Rename, 'Rename symbol' },
   { '<leader>ad', Action_HoverDoc, 'Hover documentation' },
@@ -72,10 +72,10 @@ KeyGroups = {
 --        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
 --      },
 
-Kmap = function(id, action)
+Kmap = function(id, action, bufferspecific)
   for _, val in pairs(mappings) do
     if val[2] == id then
-      vim.keymap.set('n', val[1], action, { desc = val[3] })
+      vim.keymap.set('n', val[1], action, { desc = val[3], buffer = bufferspecific })
       return
     end
   end

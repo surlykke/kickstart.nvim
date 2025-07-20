@@ -224,23 +224,25 @@ require('lazy').setup({
             }
           end
 
-          local t_builtin = require 'telescope.builtin'
+          if event.buf then
+            local t_builtin = require 'telescope.builtin'
 
-          Kmap(Goto_Definition, t_builtin.lsp_definitions)
-          Kmap(Goto_Declaration, vim.lsp.buf.declaration)
-          Kmap(Goto_TypeDefinition, t_builtin.lsp_type_definitions)
+            Kmap(Goto_Definition, t_builtin.lsp_definitions, true)
+            Kmap(Goto_Declaration, vim.lsp.buf.declaration, true)
+            Kmap(Goto_TypeDefinition, t_builtin.lsp_type_definitions, true)
 
-          Kmap(Search_Symbols, t_builtin.lsp_dynamic_workspace_symbols)
-          Kmap(Search_Usages, t_builtin.lsp_references)
-          Kmap(Search_Implementations, t_builtin.lsp_implementations)
+            Kmap(Search_Symbols, t_builtin.lsp_dynamic_workspace_symbols, true)
+            Kmap(Search_Usages, t_builtin.lsp_references, true)
+            Kmap(Search_Implementations, t_builtin.lsp_implementations, true)
 
-          Kmap(Action_Show, vim.lsp.buf.code_action)
-          Kmap(Action_Rename, vim.lsp.buf.rename)
-          Kmap(Action_HoverDoc, vim.lsp.buf.hover)
-          Kmap(Action_OrganizeImports, organizeImports)
-          Kmap(Action_FormatBuffer, vim.lsp.buf.format)
+            Kmap(Action_Show, vim.lsp.buf.code_action, true)
+            Kmap(Action_Rename, vim.lsp.buf.rename, true)
+            Kmap(Action_HoverDoc, vim.lsp.buf.hover, true)
+            Kmap(Action_OrganizeImports, organizeImports, true)
+            Kmap(Action_FormatBuffer, vim.lsp.buf.format, true)
+          end
+
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-
           if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
@@ -615,7 +617,7 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       local oil = require 'oil'
-      Kmap(Goto_ParentDir, function()
+      Kmap(Launch_Oil, function()
         oil.open(nil, { preview = { vertical = true } })
       end)
 
@@ -627,7 +629,8 @@ require('lazy').setup({
           'size',
           'mtime',
         },
-        keymap = {
+        use_default_keymaps = false,
+        --[[        keymaps = {
           ['g?'] = { 'actions.show_help', mode = 'n' },
           ['<CR>'] = 'actions.select',
           ['<C-s>'] = { 'actions.select', opts = { vertical = true } },
@@ -644,6 +647,16 @@ require('lazy').setup({
           ['gx'] = 'actions.open_external',
           ['g.'] = { 'actions.toggle_hidden', mode = 'n' },
           ['g\\'] = { 'actions.toggle_trash', mode = 'n' },
+        },]]
+        keymaps = {
+          ['<leader>o'] = { 'actions.parent', mode = 'n', desc = 'Goto parent directory' },
+          ['<leader>c'] = { 'actions.open_cwd', mode = 'n', desc = 'Goto current directory' },
+          ['<CR>'] = { 'actions.select', desc = 'Select' },
+          ['<leader>i'] = { 'actions.select', desc = 'Select' },
+          ['<leader>p'] = { 'actions.preview', mode = 'n', desc = 'Toggle preview' },
+          ['<leader>.'] = { 'actions.toggle_hidden', mode = 'n', desc = 'Toggle show hidden' },
+          ['<leader>?'] = { 'actions.show_help', mode = 'n', desc = 'Show help' },
+          ['<leader>e'] = { 'actions.close', mode = 'n', desc = 'Exit' },
         },
       }
     end,
