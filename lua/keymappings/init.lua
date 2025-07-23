@@ -79,5 +79,5 @@ Kmap = function(id, action, bufferspecific)
       return
     end
   end
-  error('No keymapping for ' + id)
+  error('No keymapping for ' .. tostring(id))
 end
