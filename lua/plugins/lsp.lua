@@ -22,7 +22,8 @@ return {
         -- NOTE: Remember that Lua is a real programming language, and as such it is possible
         -- to define small helper and utility functions so you don't have to repeat yourself.
         --
-        local organizeImports = function()
+        local tidyUp = function()
+          vim.lsp.buf.format()
           vim.lsp.buf.code_action {
             context = {
               only = { 'source.organizeImports' },
@@ -37,7 +38,6 @@ return {
           local t_builtin = require 'telescope.builtin'
 
           Kmap(Goto_Definition, t_builtin.lsp_definitions, true)
-          Kmap(Goto_Declaration, vim.lsp.buf.declaration, true)
           Kmap(Goto_TypeDefinition, t_builtin.lsp_type_definitions, true)
 
           Kmap(Search_Symbols, t_builtin.lsp_dynamic_workspace_symbols, true)
@@ -47,8 +47,7 @@ return {
           Kmap(Action_Show, vim.lsp.buf.code_action, true)
           Kmap(Action_Rename, vim.lsp.buf.rename, true)
           Kmap(Action_HoverDoc, vim.lsp.buf.hover, true)
-          Kmap(Action_OrganizeImports, organizeImports, true)
-          Kmap(Action_FormatBuffer, vim.lsp.buf.format, true)
+          Kmap(Action_TidyUp, tidyUp)
         end
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)

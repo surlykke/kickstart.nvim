@@ -17,15 +17,13 @@ Search_Symbols = 'Search_Symbols'
 Search_Usages = 'Search_Usages'
 Search_Implementations = 'Search_Implementations'
 Goto_Definition = 'Goto_Definition'
-Goto_Declaration = 'Goto_Declaration'
 Goto_TypeDefinition = 'Goto_TypeDefinition'
 Goto_QuickfixList = 'Goto_QuickfixList'
 Launch_Oil = 'Launch_Oil'
 Action_Show = 'Action_Show'
 Action_Rename = 'Action_Rename'
 Action_HoverDoc = 'Action_HoverDoc'
-Action_OrganizeImports = 'Action_OrganizeImports'
-Action_FormatBuffer = 'Action_FormatBuffer'
+Action_TidyUp = 'Action_Tidy_Up'
 
 local mappings = {
   -- keys, id, description
@@ -35,8 +33,7 @@ local mappings = {
   { '<C-j>', MoveFocusLowerWindow, 'Move focus to the lower window' },
   { '<C-k>', MoveFocusUpperWindow, 'Move focus to the upper window' },
   -- Search
-  { '<leader>sb', Search_Buffers, 'Find existing buffers' },
-  { '<leader>sc', Search_CurrentBuffer, '/ Fuzzily search in current buffer' },
+  { '<leader>sb', Search_Buffers, 'Search buffers' },
   { '<leader>se', Search_Errors, 'Search_Errors' },
   { '<leader>sf', Search_Files, 'Search Files' },
   { '<leader>sh', Search_Help, 'Search Help' },
@@ -48,18 +45,16 @@ local mappings = {
   { '<leader>st', Search_Text, 'Search Text' },
   { '<leader>su', Search_Usages, ' Usages' },
   { '<leader>sw', Search_CurrentWord, ' Usages' },
-  -- Navigation
-  { '<leader>gd', Goto_Definition, 'Goto Definition' },
-  { '<leader>gD', Goto_Declaration, 'Goto Declaration' },
-  { '<leader>gt', Goto_TypeDefinition, 'Goto Type Definition' },
-  { '<leader>gq', Goto_QuickfixList, 'Goto quickfix list' },
-  -- Actions
+  { '<leader>/', Search_CurrentBuffer, 'Fuzzy search' },
+  -- Navigation/Actions
+  { '<leader>d', Goto_Definition, 'Goto Definition' },
+  { '<leader>t', Goto_TypeDefinition, 'Goto Type Definition' },
+  { '<leader>q', Goto_QuickfixList, 'Goto quickfix list' },
   { '<leader>o', Launch_Oil, 'Launch Oil' },
-  { '<leader>as', Action_Show, 'Show Code Actions' },
-  { '<leader>ar', Action_Rename, 'Rename symbol' },
-  { '<leader>ad', Action_HoverDoc, 'Hover documentation' },
-  { '<leader>ao', Action_OrganizeImports, 'Organize imports' },
-  { '<leader>af', Action_FormatBuffer, 'Format buffer' },
+  { '<leader>a', Action_Show, 'Show Code Actions' },
+  { '<leader>r', Action_Rename, 'Rename symbol' },
+  { '<leader>k', Action_HoverDoc, 'Hover documentation' },
+  { '<leader><leader>', Action_TidyUp, 'Organize imports and format' },
 }
 KeyGroups = {
   { '<leader>s', group = 'Search' },
