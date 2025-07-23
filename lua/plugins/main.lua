@@ -224,7 +224,38 @@ return {
     },
   },
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  -- TODO
+  {
+    'folke/todo-comments.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = {
+      highlight = {
+        before = '',
+        keyword = 'fg',
+        after = '',
+      },
+      signs = false,
+      keywords = {
+        FIXME = { color = 'error' },
+        TODO = { color = 'info' },
+      },
+      merge_keywords = false,
+      gui_style = {
+        fg = 'BOLD', -- The gui style to use for the fg highlight group.
+        bg = 'NONE', -- The gui style to use for the bg highlight group.
+      },
+      search = {
+        command = 'rg',
+        args = {
+          '--color=never',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+        },
+      },
+    },
+  },
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
