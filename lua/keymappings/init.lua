@@ -18,12 +18,16 @@ Search_Usages = 'Search_Usages'
 Search_Implementations = 'Search_Implementations'
 Goto_Definition = 'Goto_Definition'
 Goto_TypeDefinition = 'Goto_TypeDefinition'
-Goto_QuickfixList = 'Goto_QuickfixList'
+
 Launch_Oil = 'Launch_Oil'
 Action_Show = 'Action_Show'
 Action_Rename = 'Action_Rename'
 Action_HoverDoc = 'Action_HoverDoc'
 Action_TidyUp = 'Action_Tidy_Up'
+
+Goto_QuickfixList = 'Goto_QuickfixList'
+Quickfix_Next = 'Quickfix_Next'
+Quickfix_Prev = 'Quickfix_Prev'
 
 local mappings = {
   -- keys, id, description
@@ -49,12 +53,14 @@ local mappings = {
   -- Navigation/Actions
   { '<leader>d', Goto_Definition, 'Goto Definition' },
   { '<leader>t', Goto_TypeDefinition, 'Goto Type Definition' },
-  { '<leader>q', Goto_QuickfixList, 'Goto quickfix list' },
   { '<leader>o', Launch_Oil, 'Launch Oil' },
   { '<leader>a', Action_Show, 'Show Code Actions' },
   { '<leader>r', Action_Rename, 'Rename symbol' },
   { '<leader>k', Action_HoverDoc, 'Hover documentation' },
   { '<leader><leader>', Action_TidyUp, 'Organize imports and format' },
+  { '<leader>q', Goto_QuickfixList, 'Goto quickfix list' },
+  { '<leader>n', Quickfix_Next, 'Quickfix next item' },
+  { '<leader>p', Quickfix_Prev, 'Quickfix previous item' },
 }
 KeyGroups = {
   { '<leader>s', group = 'Search' },
