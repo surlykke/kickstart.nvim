@@ -60,6 +60,7 @@ Kmap(MoveFocusUpperWindow, '<C-w><C-k>')
 Kmap(Goto_QuickfixList, vim.cmd.copen)
 Kmap(Quickfix_Next, vim.cmd.cnext)
 Kmap(Quickfix_Prev, vim.cmd.cprev)
+vim.keymap.set('i', '<C-p>', '<ESC>dwi')
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',

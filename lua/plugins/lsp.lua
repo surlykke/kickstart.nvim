@@ -47,7 +47,7 @@ return {
           Kmap(Action_Show, vim.lsp.buf.code_action, true)
           Kmap(Action_Rename, vim.lsp.buf.rename, true)
           Kmap(Action_HoverDoc, vim.lsp.buf.hover, true)
-          Kmap(Action_TidyUp, tidyUp)
+          Kmap(Action_TidyUp, tidyUp, true)
         end
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)

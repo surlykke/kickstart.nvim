@@ -18,7 +18,7 @@ return {
     lazy = false,
     priorty = 1000,
     config = function()
-      vim.cmd 'colorscheme tokyonight-night'
+      -- vim.cmd 'colorscheme tokyonight-night'
     end,
   },
   {
@@ -27,6 +27,12 @@ return {
     priorty = 1000,
     config = function()
       -- vim.cmd 'colorscheme solarized8_high'
+    end,
+  },
+  {
+    'vague2k/vague.nvim',
+    config = function()
+      vim.cmd 'colorscheme vague'
     end,
   },
 }
